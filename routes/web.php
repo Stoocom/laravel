@@ -4,7 +4,7 @@
 
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\CategoryOfNewsController;
 
 
 /*
@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //use ($text, $title)
+
+
 Route::get('/', function () {
     // $name = 'Alexander';
     return view('welcome', ['param' => $name = "Guest!"]);
@@ -29,10 +31,15 @@ Route::get('/about', function () {
 
 });
 
-Route::get('/news', function () {
-    // $name = 'Alexander';
-    return view('news',
-        ['param' => ['news_one' => 'Description_1', 'news_two' => 'Description_2'],
-        'name' => ['name_one' => 'News First', 'name_two' => 'News Second']]);
+Route::get('/welcome', [
+    'uses' => '\App\Http\Controllers\WelcomePageController@index'])
+->where('userName', '[a-9]+');
 
-});
+Route::get('/categories', [
+    'uses' => '\App\Http\Controllers\CategoryOfNewsController@showCategories']);
+
+Route::get('/news/{id}', [
+    'uses' => '\App\Http\Controllers\NewsController@getOneNews']);
+
+Route::get('/categories/{id}', [
+    'uses' => '\App\Http\Controllers\CategoryOfNewsController@getNewsFromCategory']);
