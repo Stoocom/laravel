@@ -6,7 +6,6 @@
     <title>About</title>
 </head>
 <body>
-    <h1>"Приветствую Вас, {{$param}}"</h1>
-    <a href="/">Главная</a>
+    <p>Hello, {{ $param }}</p>
 </body>
 </html>

@@ -49,32 +49,18 @@ class CategoryOfNewsController extends Controller
 
     public function showCategories()
     {
-        $html = "<h1>Категории</h1>";
-        foreach ($this->categoriesOfNews as $id => $item) {
-            $html .= <<<php
-            <div><a href="/categories/{$id}">{$item['title']}</a></div>
-            php;
-        }
-       
-        return $html;
+        return view('categories', [
+            'html' => "Категории",
+            'categoriesOfNews' => $this->categoriesOfNews
+            ]);
     }
 
     public function getNewsFromCategory($id) {
-        
-        $category_news = $this->getNewsByIdCategory($id);
-
-        $html = "<h1>Категории</h1>";
-        foreach ($category_news as $id => $item) {
-            $html .= <<<php
-            <div>
-                <h3>{$item['title']}</h3>
-                <div>{$item['description']}</div>
-            </div>
-            <hr>
-            php;
-        }
-        
-        return $html;
+        $html = "Категории";
+        return view('categoryOfNews', [
+            'html' => $html,
+            'category_news' => $this->getNewsByIdCategory($id)
+            ]);
     }
 
     private function getNewsByIdCategory($id) {
@@ -84,7 +70,6 @@ class CategoryOfNewsController extends Controller
                 array_push($category_news, $item);
             }
         }
-        var_dump($category_news);
         return $category_news;
     }
 

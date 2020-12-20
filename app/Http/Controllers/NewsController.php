@@ -35,24 +35,14 @@ class NewsController extends Controller
 
     public function getOneNews($id) {
     
-        $news = $this->getNewsById($id);
-
-        if (!empty($news)) {
-            $html = <<<php
-            <div>
-                <h1>{$news['title']}</h1>
-                <div>{$news['description']}</div>
-            </div>
-            php;
-            return $html;
-        }
-        return "Извините, информация по такой новости дополняется";
+        $newsOne = $this->getNewsById($id);
+        return view('news', ['newsOne' => $newsOne]);
     }
 
     private function getNewsById($id) {
         foreach ($this->news as $news) {
-            $routeName = route('newsOne', $news['id']);
-            dump($routeName);
+            //$routeName = route('newsOne', $news['id']);
+            //dump($routeName);
             if ($news['id'] == $id) {
                 return $news;
             }
