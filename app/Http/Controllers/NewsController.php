@@ -51,6 +51,8 @@ class NewsController extends Controller
 
     private function getNewsById($id) {
         foreach ($this->news as $news) {
+            $routeName = route('newsOne', $news['id']);
+            dump($routeName);
             if ($news['id'] == $id) {
                 return $news;
             }
@@ -58,4 +60,4 @@ class NewsController extends Controller
         return [];
     }
 
-}
+} 

@@ -39,7 +39,9 @@ Route::get('/categories', [
     'uses' => '\App\Http\Controllers\CategoryOfNewsController@showCategories']);
 
 Route::get('/news/{id}', [
-    'uses' => '\App\Http\Controllers\NewsController@getOneNews']);
+    'uses' => '\App\Http\Controllers\NewsController@getOneNews',
+    'as' => 'newsOne',
+]);
 
 Route::get('/categories/{id}', [
     'uses' => '\App\Http\Controllers\CategoryOfNewsController@getNewsFromCategory']);
