@@ -6,6 +6,7 @@
     <title>About</title>
 </head>
 <body>
+@include('blocks.menu')
     <p>Hello, {{ $param }}</p>
 </body>
 </html>

@@ -5,7 +5,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\CategoryOfNewsController;
-
+use \App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,21 +27,39 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
+    $name = 'Alexander';
     return view('about_page', ['param' => $name = "Some information about our project!"]);
+});
 
+Route::group([
+    'prefix' => 'news',
+    'as' => 'news::',
+], function () {
+    Route::get('/', [
+        'uses' => '\App\Http\Controllers\NewsController@index'])
+        ->name('categories');;
+    //'uses' => [NewsController::class, 'index'] 
+    //]);
+    Route::get('/card/{id}', [
+        'uses' => '\App\Http\Controllers\NewsController@getOneNews'])
+        ->name('news-one');
+    Route::get('/{categoryId}', [ 
+        'uses' => '\App\Http\Controllers\NewsController@list'])
+        ->name('list');
 });
 
 Route::get('/welcome', [
     'uses' => '\App\Http\Controllers\WelcomePageController@index'])
-->where('userName', '[a-9]+');
+->where('userName', '[a-9]+')->name('home');
 
-Route::get('/categories', [
-    'uses' => '\App\Http\Controllers\CategoryOfNewsController@showCategories']);
-
+Route::get('/about', [
+    'uses' => '\App\Http\Controllers\AboutPageController@index'])
+    ->name('about');
+/*
 Route::get('/news/{id}', [
     'uses' => '\App\Http\Controllers\NewsController@getOneNews',
-    'as' => 'newsOne',
+    'as' => 'news-one',
 ]);
-
+*/
 Route::get('/categories/{id}', [
     'uses' => '\App\Http\Controllers\CategoryOfNewsController@getNewsFromCategory']);

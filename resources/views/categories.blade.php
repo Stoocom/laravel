@@ -6,10 +6,14 @@
     <title>Категории</title>
 </head>
 <body>
+@include('blocks.menu')
     {{$html}}
 @forelse ($categoriesOfNews as $id => $item)
+    @php
+    $routeName = route('news::list', ['categoryId' => $id]);
+    @endphp
     <div>
-        <a href="/categories/{{$id}}">{{$item['title']}}</a>
+        <a href="{{$routeName}}">{{$item['title']}}</a>
     </div>
 @empty
     <p>Категорий нет</p>

@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News1</title>
+    <title>Новости категории</title>
 </head>
 <body>
+@include('blocks.menu')
 @if (count($newsOne) > 0)
-<div>
-    <h1>{{$newsOne['title']}}</h1>
-    <div>{{$newsOne['description']}}</div>
-</div>
+    @foreach($newsOne as $item)
+    @php
+        $routeName = route('news::news-one', ['id' => $item['id']]);
+    @endphp
+    <div>
+        <a href='{{$routeName}}'>{{$item['title']}}</a>
+    </div>
+    @endforeach
 @else
     Нет записей!
 @endif
 </body>
-</html>
+</html> 
