@@ -6,7 +6,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\CategoryOfNewsController;
 use \App\Http\Controllers\NewsController;
-
+//use \App\Http\Controllers\Admin\NewsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,5 +61,18 @@ Route::get('/news/{id}', [
     'as' => 'news-one',
 ]);
 */
-Route::get('/categories/{id}', [
-    'uses' => '\App\Http\Controllers\CategoryOfNewsController@getNewsFromCategory']);
+Route::get('admin/news/create', [
+    'uses' => '\App\Http\Controllers\Admin\NewsController@createView'])
+    ->name('create');
+
+Route::post('admin/news/create', [
+    'uses' => '\App\Http\Controllers\Admin\NewsController@create'])
+    ->name('create_action');
+
+Route::get('admin/category/create', [
+    'uses' => '\App\Http\Controllers\Admin\CategoryController@createView'])
+    ->name('create');
+    
+Route::post('admin/category/create', [
+    'uses' => '\App\Http\Controllers\Admin\CategoryController@create'])
+    ->name('create_action');

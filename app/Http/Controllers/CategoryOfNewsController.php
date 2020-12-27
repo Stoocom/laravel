@@ -45,7 +45,15 @@ class CategoryOfNewsController extends Controller
             'description' => "Just only russian football club Krasnodar from city with similar name goes to group part of UEFA"
         ],
     ];
-
+    
+    public function getCategories()
+    {
+        $array = [];
+        foreach ($this->categoriesOfNews as $key => $item) {
+            $array[] = $item['title'];
+        }
+        return $array;
+    }
 
     public function showCategories()
     {
