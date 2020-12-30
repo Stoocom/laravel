@@ -5,7 +5,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\CategoryOfNewsController;
-use \App\Http\Controllers\NewsController;
+use \App\Http\Controllers\DbController;
 //use \App\Http\Controllers\Admin\NewsController;
 /*
 |--------------------------------------------------------------------------
@@ -76,3 +76,6 @@ Route::get('admin/category/create', [
 Route::post('admin/category/create', [
     'uses' => '\App\Http\Controllers\Admin\CategoryController@create'])
     ->name('create_action');
+
+
+Route::get('/db', [DbController::class, 'index']);
